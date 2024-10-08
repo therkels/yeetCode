@@ -1,26 +1,25 @@
 def convert(s: str, numRows: int) -> str:
-    if numRows == 1:
-        return str
-    arr_2d = [[] for i in range(numRows)]
-    row_idx = 0
-    trail_up = False
-    for pos, s in enumerate(s):
-        if row_idx < numRows and not trail_up:
-            arr_2d[row_idx].append(s)
-            row_idx += 1
+    display_matrix = [[] for i in range(numRows)]
+    pos = 0
+    is_up = False
 
-            if row_idx == numRows:
-                trail_up = True
-                row_idx -= 1
-        else:
-            if row_idx != 0:
-                row_idx -= 1
-                arr_2d[row_idx].append(s)
+    for char in s:
+        if pos <= 0:
+            pos = 0
+            is_up = False
+        if pos < numRows and not is_up:
+            display_matrix[pos].append(char)
+            pos += 1
+        elif pos > 0 and is_up:
+            display_matrix[pos].append(char)
+            pos -= 1
+        if pos == numRows:
+            is_up = True
+            pos -= 2
+    
+    ret_str = []
+    for i in display_matrix:
+        ret_str.extend(i)
+    return "".join(ret_str)
 
-            if row_idx == 0:
-                trail_up = False
-                row_idx += 1
-    ret_str = ''
-    for ele in arr_2d:
-        ret_str += "".join(ele)
-    return ret_str
+print(convert("A", numRows=1))
