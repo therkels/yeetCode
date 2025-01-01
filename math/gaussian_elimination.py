@@ -232,5 +232,6 @@ def back_substitution(M):
 
 A = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
 B = np.array([[5], [6], [7]])
+print(row_echelon_form([[1, 3, -4], [2, -1, -3]], [[4], [5], [-11]]))
 M = augmented_matrix(A, B)
 print(back_substitution(M))
